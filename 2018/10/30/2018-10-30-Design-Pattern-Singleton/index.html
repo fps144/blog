@@ -108,24 +108,25 @@
 
 
 
-  <meta name="description" content="吉他入门级玩家偶尔写个程序">
-<meta name="keywords" content="iOS">
-<meta property="og:type" content="website">
-<meta property="og:title" content="難得糊塗">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="本文将以 Objective-C 语言为媒介，介绍单例模式的原理、其在 iOS 开发当中的应用以及一些编写单例代码的技巧。">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单例设计模式（Objective-C）【Singleton Design Pattern】">
+<meta property="og:url" content="http://yoursite.com/2018/10/30/2018-10-30-Design-Pattern-Singleton/index.html">
 <meta property="og:site_name" content="難得糊塗">
-<meta property="og:description" content="吉他入门级玩家偶尔写个程序">
+<meta property="og:description" content="本文将以 Objective-C 语言为媒介，介绍单例模式的原理、其在 iOS 开发当中的应用以及一些编写单例代码的技巧。">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-30T14:52:54.423Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="難得糊塗">
-<meta name="twitter:description" content="吉他入门级玩家偶尔写个程序">
+<meta name="twitter:title" content="单例设计模式（Objective-C）【Singleton Design Pattern】">
+<meta name="twitter:description" content="本文将以 Objective-C 语言为媒介，介绍单例模式的原理、其在 iOS 开发当中的应用以及一些编写单例代码的技巧。">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2018/10/30/2018-10-30-Design-Pattern-Singleton/">
 
 
 
@@ -135,7 +136,7 @@
   };
 </script>
 
-  <title>難得糊塗</title>
+  <title>单例设计模式（Objective-C）【Singleton Design Pattern】 | 難得糊塗</title>
   
 
 
@@ -184,8 +185,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -226,7 +226,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
     <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
   </li>
@@ -294,9 +294,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -328,11 +328,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/30/2018-10-30-Design-Pattern-Singleton/" itemprop="url">
-                  单例设计模式（Objective-C）【Singleton Design Pattern】
-                </a>
+          <h1 class="post-title" itemprop="name headline">单例设计模式（Objective-C）【Singleton Design Pattern】
               
             
           </h1>
@@ -413,20 +409,47 @@
       
 
       
-        
-          <blockquote>
+        <blockquote>
 <p>本文将以 Objective-C 语言为媒介，介绍单例模式的原理、其在 iOS 开发当中的应用以及一些编写单例代码的技巧。</p>
 </blockquote>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/10/30/2018-10-30-Design-Pattern-Singleton/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
+<a id="more"></a>
+<p><strong><a href="https://github.com/fps144/DesignPatternsDemo" target="_blank" rel="noopener">Demo</a></strong></p>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>单例：即单独的实例。</p>
+<p>单例模式：以单例为核心的设计模式。在它的核心结构中只包含一个特殊类（即单例）。通过单例模式可以保证系统中，应用该模式的类一个类只有一个对象实例。  </p>
+<p>单例类：即按照单例设计模式来设计的类，整个程序中只会存在一个此类的实例，且提供一个类方法的入口来访问这个实例。是 iOS 开发对于单例模式的主要应用场景。</p>
+<p>单例类的生命周期：程序于编译时初始化单例类， 并存于内存（全局区域）中，直到程序退出时由系统自行释放。</p>
+<p><strong>在 iOS 系统中，有如下几个典型的单例类：</strong>  </p>
+<ul>
+<li>UIApplication</li>
+<li>NSNotificationCenter</li>
+<li>NSFileManager</li>
+<li>NSUserDefaults</li>
+<li>NSURLCache</li>
+<li>NSHTTPCookieStorage</li>
+</ul>
+<h3 id="单线程单例"><a href="#单线程单例" class="headerlink" title="单线程单例"></a>单线程单例</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> Singleton_SingleThread *instance;</span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">instancetype</span>)sharedInterface &#123;</span><br><span class="line">    <span class="keyword">if</span> (!instance) &#123;</span><br><span class="line">        instance = [[<span class="keyword">self</span> alloc] init];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最简单直观的单例模式类，在第一次访问单例接口 <code>+ (instancetype)sharedInterface</code> 的时候创建一个实例，之后再次访问则返回已创建好的实例。</p>
+<p>但在多线程的环境下，同时访问单例接口的时候容易创建多个实例，造成不可控的风险。基于此，单线程单例很少应用于开发当中。  </p>
+<h3 id="同步锁单例"><a href="#同步锁单例" class="headerlink" title="同步锁单例"></a>同步锁单例</h3><p>为了解决单线程单例在多线程环境下明显的缺点，首先会想到<strong>加锁</strong>，利用 <code>@synchronized</code>，就有了下面这种<strong>同步锁单例</strong>。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> Singleton_Lock *instance;</span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">instancetype</span>)sharedInterface &#123;</span><br><span class="line">    <span class="keyword">@synchronized</span> (<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!instance) &#123;</span><br><span class="line">            instance = [[<span class="keyword">self</span> alloc] init];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如此一来，就解决了多线程环境下访问单例接口的问题。但这还不够好，因为多个线程同时访问 <code>@synchronized</code> 中的代码时，只有一个线程会被放行，而其他的都需要等待，造成了一定程度的性能消耗。这样的阻塞是没有必要的，因为只有当 <code>instance</code> 没有被创建时，加锁才有意义，一旦 <code>instance</code> 被创建，锁自然就成了负担。</p>
+<h3 id="GCD单例"><a href="#GCD单例" class="headerlink" title="GCD单例"></a>GCD单例</h3><p>为了解决 <code>@synchronized</code> 的性能问题，GCD为我们提供了一套简单又粗暴的单例类实现方案，即 <code>dispatch_once</code>。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> Singleton_GCD *instance;</span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">instancetype</span>)sharedInterface &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">dispatch_once_t</span> onceToken;</span><br><span class="line">    <span class="built_in">dispatch_once</span>(&amp;onceToken, ^&#123;</span><br><span class="line">        instance = [[<span class="keyword">self</span> alloc] init];</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>原理是这样的：</strong></p>
+<ol>
+<li><code>static</code> 表示 <code>instance</code> 将作为静态变量存入内存当中。</li>
+<li><code>dispatch_once_t</code> 类型其实就是 <code>long</code> 类型（<code>typedef long dispatch_once_t;</code>）。</li>
+<li><code>onceToken</code> 是 <code>dispatch_once</code> 来判断内部代码是否执行过的标志位。</li>
+<li>当 <code>onceToken</code> 为 0 时，线程执行 block 中的代码。</li>
+<li>当 <code>onceToken</code> 为 -1 时，线程跳过 block 中的代码。</li>
+<li>当 <code>onceToken</code> 为其他任何可能的值时，线程被阻塞，等待 <code>onceToken</code> 的值发生变化。</li>
+<li>A线程首先调用单例接口，先改变 <code>onceToken</code> 的值为一个任意值，再执行 block 中的代码（此时若其他线程也想执行 block 中的代码，则会因为判定 <code>onceToken</code> 的值而阻塞在外部），最后执行完 block，将 <code>onceToken</code>的值置为 -1，其他线程直接跳过 block。</li>
+<li>这样的模式只会在首次实例时阻塞线程，一旦实例创建完毕（此时 <code>onceToken</code> 已变为 -1），就不会再阻塞线程，而是直接跳过 block。</li>
+</ol>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>单例模式是一种非常好用且常见的设计模式，而在 iOS 开发中，使用 GCD 来创建单例类，是目前的最佳方案。</p>
+<p>单例的优点很明显，节约系统开支，提升程序运行的效率，且开发者可以凭借单例特有的唯一性来定位 bug。</p>
+<p>但仍需注意的是，正因为单例独有的一旦创建就只有一份（地址不会变）的特性，导致我们无法手动销毁这个单例，这块内存只能由系统去释放。这就意味着，单例一旦处于闲置状态，那么它就是一个单纯的资源消耗者。所以，一个程序不应该有太多的单例，否则将会占用大量的内存。</p>
+
       
     </div>
 
@@ -444,192 +467,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/29/2018-10-28-Design-Pattern-Factory/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="南门">
-      <meta itemprop="description" content="吉他入门级玩家</br>偶尔写个程序">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="難得糊塗">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/29/2018-10-28-Design-Pattern-Factory/" itemprop="url">
-                  工厂设计模式（Objective-C）【Factory Design Pattern】
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-10-29 19:59:00" itemprop="dateCreated datePublished" datetime="2018-10-29T19:59:00+08:00">2018-10-29</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-10-30 22:51:58" itemprop="dateModified" datetime="2018-10-30T22:51:58+08:00">2018-10-30</time>
-              
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Programming/" itemprop="url" rel="index"><span itemprop="name">Programming</span></a></span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <blockquote>
-<p>本文将以 Objective-C 语言为媒介，介绍工厂设计模式的三大类型。</p>
-</blockquote>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/10/29/2018-10-28-Design-Pattern-Factory/#more" rel="contents">
-                Read more &raquo;
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/29/2018-10-28-Design-Pattern-Factory/" rel="next" title="工厂设计模式（Objective-C）【Factory Design Pattern】">
+                <i class="fa fa-chevron-left"></i> 工厂设计模式（Objective-C）【Factory Design Pattern】
               </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
+            
+          </div>
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -639,14 +506,15 @@
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -667,8 +535,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -755,6 +632,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单线程单例"><span class="nav-number">2.</span> <span class="nav-text">单线程单例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步锁单例"><span class="nav-number">3.</span> <span class="nav-text">同步锁单例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GCD单例"><span class="nav-number">4.</span> <span class="nav-text">GCD单例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结语"><span class="nav-number">5.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -885,6 +778,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
 
   
 
