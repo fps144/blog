@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="難得糊塗">
 <meta property="og:description" content="本文将以 Objective-C 语言为媒介，介绍单例模式的原理、其在 iOS 开发当中的应用以及一些编写单例代码的技巧。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-30T14:52:54.423Z">
+<meta property="og:updated_time" content="2018-10-31T17:27:18.298Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="单例设计模式（Objective-C）【Singleton Design Pattern】">
 <meta name="twitter:description" content="本文将以 Objective-C 语言为媒介，介绍单例模式的原理、其在 iOS 开发当中的应用以及一些编写单例代码的技巧。">
@@ -353,12 +353,24 @@
                 
               
 
-              <time title="Created: 2018-10-30 22:43:00 / Modified: 22:52:54" itemprop="dateCreated datePublished" datetime="2018-10-30T22:43:00+08:00">2018-10-30</time>
+              <time title="Created: 2018-10-30 22:43:00" itemprop="dateCreated datePublished" datetime="2018-10-30T22:43:00+08:00">2018-10-30</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-11-01 01:27:18" itemprop="dateModified" datetime="2018-11-01T01:27:18+08:00">2018-11-01</time>
               
             
           </span>
@@ -430,6 +442,7 @@
 <p>单例类的生命周期：程序于编译时初始化单例类， 并存于内存（全局区域）中，直到程序退出时由系统自行释放。</p>
 <p><strong>在 iOS 系统中，有如下几个典型的单例类：</strong>  </p>
 <ul>
+<li>类对象（在应用程序范围内，每个类的 Class 仅有一个实例）</li>
 <li>UIApplication</li>
 <li>NSNotificationCenter</li>
 <li>NSFileManager</li>
