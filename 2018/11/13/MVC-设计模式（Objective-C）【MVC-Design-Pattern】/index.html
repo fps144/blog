@@ -108,25 +108,27 @@
 
 
 
-  <meta name="description" content="本文将以 Objective-C 语言为媒介，介绍单例模式的原理、其在 iOS 开发当中的应用以及一些编写单例代码的技巧。">
+  <meta name="description" content="本文将以 Objective-C 语言为媒介，结合其在 iOS 开发当中的应用要点，介绍 MVC 设计模式的概念、特点及优劣性。">
 <meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单例设计模式（Objective-C）【Singleton Design Pattern】">
-<meta property="og:url" content="http://yoursite.com/2018/10/30/2018-10-30-Design-Pattern-Singleton/index.html">
+<meta property="og:title" content="MVC 设计模式（Objective-C）【MVC Design Pattern】">
+<meta property="og:url" content="http://yoursite.com/2018/11/13/MVC-设计模式（Objective-C）【MVC-Design-Pattern】/index.html">
 <meta property="og:site_name" content="難得糊塗">
-<meta property="og:description" content="本文将以 Objective-C 语言为媒介，介绍单例模式的原理、其在 iOS 开发当中的应用以及一些编写单例代码的技巧。">
+<meta property="og:description" content="本文将以 Objective-C 语言为媒介，结合其在 iOS 开发当中的应用要点，介绍 MVC 设计模式的概念、特点及优劣性。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-13T14:42:28.202Z">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/12/16708309ab1172f1?w=1280&h=800&f=png&s=1553741">
+<meta property="og:updated_time" content="2018-11-13T14:40:17.181Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单例设计模式（Objective-C）【Singleton Design Pattern】">
-<meta name="twitter:description" content="本文将以 Objective-C 语言为媒介，介绍单例模式的原理、其在 iOS 开发当中的应用以及一些编写单例代码的技巧。">
+<meta name="twitter:title" content="MVC 设计模式（Objective-C）【MVC Design Pattern】">
+<meta name="twitter:description" content="本文将以 Objective-C 语言为媒介，结合其在 iOS 开发当中的应用要点，介绍 MVC 设计模式的概念、特点及优劣性。">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/11/12/16708309ab1172f1?w=1280&h=800&f=png&s=1553741">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/30/2018-10-30-Design-Pattern-Singleton/">
+  <link rel="canonical" href="http://yoursite.com/2018/11/13/MVC-设计模式（Objective-C）【MVC-Design-Pattern】/">
 
 
 
@@ -136,7 +138,7 @@
   };
 </script>
 
-  <title>单例设计模式（Objective-C）【Singleton Design Pattern】 | 難得糊塗</title>
+  <title>MVC 设计模式（Objective-C）【MVC Design Pattern】 | 難得糊塗</title>
   
 
 
@@ -311,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/30/2018-10-30-Design-Pattern-Singleton/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/13/MVC-设计模式（Objective-C）【MVC-Design-Pattern】/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="南门">
@@ -328,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">单例设计模式（Objective-C）【Singleton Design Pattern】
+          <h1 class="post-title" itemprop="name headline">MVC 设计模式（Objective-C）【MVC Design Pattern】
               
             
           </h1>
@@ -353,24 +355,12 @@
                 
               
 
-              <time title="Created: 2018-10-30 22:43:00" itemprop="dateCreated datePublished" datetime="2018-10-30T22:43:00+08:00">2018-10-30</time>
+              <time title="Created: 2018-11-13 22:38:00 / Modified: 22:40:17" itemprop="dateCreated datePublished" datetime="2018-11-13T22:38:00+08:00">2018-11-13</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-11-13 22:42:28" itemprop="dateModified" datetime="2018-11-13T22:42:28+08:00">2018-11-13</time>
               
             
           </span>
@@ -402,8 +392,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/10/30/2018-10-30-Design-Pattern-Singleton/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/30/2018-10-30-Design-Pattern-Singleton/" itemprop="commentCount"></span>
+                <a href="/2018/11/13/MVC-设计模式（Objective-C）【MVC-Design-Pattern】/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/11/13/MVC-设计模式（Objective-C）【MVC-Design-Pattern】/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -432,46 +422,50 @@
 
       
         <blockquote>
-<p>本文将以 Objective-C 语言为媒介，介绍单例模式的原理、其在 iOS 开发当中的应用以及一些编写单例代码的技巧。</p>
+<p>本文将以 Objective-C 语言为媒介，结合其在 iOS 开发当中的应用要点，介绍 MVC 设计模式的概念、特点及优劣性。</p>
 </blockquote>
 <a id="more"></a>
 <p><strong><a href="https://github.com/fps144/DesignPatternDemo" target="_blank" rel="noopener">Demo</a></strong></p>
-<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>单例：即单独的实例。</p>
-<p>单例模式：以单例为核心的设计模式。在它的核心结构中只包含一个特殊类（即单例）。通过单例模式可以保证系统中，应用该模式的类一个类只有一个对象实例。  </p>
-<p>单例类：即按照单例设计模式来设计的类，整个程序中只会存在一个此类的实例，且提供一个类方法的入口来访问这个实例。是 iOS 开发对于单例模式的主要应用场景。</p>
-<p>单例类的生命周期：程序于编译时初始化单例类， 并存于内存（全局区域）中，直到程序退出时由系统自行释放。</p>
-<p><strong>在 iOS 系统中，有如下几个典型的单例类：</strong>  </p>
+<h3 id="MVC-是什么？"><a href="#MVC-是什么？" class="headerlink" title="MVC 是什么？"></a>MVC 是什么？</h3><p>MVC（Model-View-Controller）于1978年借由 Smalltalk 被提出，是一个古老的、高级的、复合的设计模式。它的出现为 GUI 编程开辟了一片新的天地，在随后的几十年里，产生了诸如 MVA、MVP、MVVM 等 MVC 的变种设计模式。</p>
+<p>MVC 并没有一个完全明确的定义，各大论坛、百科、书籍等都对其有大体一致，但多少又有点不一样的解释，他们给出的 MVC 架构图解也是各有千秋。而对于 iOS 开发而言，Paul Hegarty 在其斯坦福 iOS 开发相关课程中给出的这幅图，我认为既生动、又形象、还准确。</p>
+<center><img src="https://user-gold-cdn.xitu.io/2018/11/12/16708309ab1172f1?w=1280&amp;h=800&amp;f=png&amp;s=1553741" alt="MVC"></center>
+
+<p><strong>这张图是在说：</strong></p>
 <ul>
-<li>类对象（在应用程序范围内，每个类的 Class 仅有一个实例）</li>
-<li>UIApplication</li>
-<li>NSNotificationCenter</li>
-<li>NSFileManager</li>
-<li>NSUserDefaults</li>
-<li>NSURLCache</li>
-<li>NSHTTPCookieStorage</li>
+<li>Controller 和 Model、View 是单向通信关系，而 Model 和 View 之间是隔离关系。</li>
+<li>Controller 可以直接操作 Model，从 Model 中获取数据。</li>
+<li>Controller 可以直接操作 View 的展示，是 View 的数据源（数据也许来源于 Model），也是 View 的代理（delegate 是 Controller 用来同步 View 状态的手段）。</li>
+<li>Model 可以通过 Notification 和 KVO 来间接地和 Controller 通信。</li>
+<li>View 可以把 action 的 target 设置为 Controller，用来向 Controller 传达事件信息。</li>
 </ul>
-<h3 id="单线程单例"><a href="#单线程单例" class="headerlink" title="单线程单例"></a>单线程单例</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> Singleton_SingleThread *instance;</span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">instancetype</span>)sharedInterface &#123;</span><br><span class="line">    <span class="keyword">if</span> (!instance) &#123;</span><br><span class="line">        instance = [[<span class="keyword">self</span> alloc] init];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>最简单直观的单例模式类，在第一次访问单例接口 <code>+ (instancetype)sharedInterface</code> 的时候创建一个实例，之后再次访问则返回已创建好的实例。</p>
-<p>但在多线程的环境下，同时访问单例接口的时候容易创建多个实例，造成不可控的风险。基于此，单线程单例很少应用于开发当中。  </p>
-<h3 id="同步锁单例"><a href="#同步锁单例" class="headerlink" title="同步锁单例"></a>同步锁单例</h3><p>为了解决单线程单例在多线程环境下明显的缺点，首先会想到<strong>加锁</strong>，利用 <code>@synchronized</code>，就有了下面这种<strong>同步锁单例</strong>。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> Singleton_Lock *instance;</span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">instancetype</span>)sharedInterface &#123;</span><br><span class="line">    <span class="keyword">@synchronized</span> (<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!instance) &#123;</span><br><span class="line">            instance = [[<span class="keyword">self</span> alloc] init];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如此一来，就解决了多线程环境下访问单例接口的问题。但这还不够好，因为多个线程同时访问 <code>@synchronized</code> 中的代码时，只有一个线程会被放行，而其他的都需要等待，造成了一定程度的性能消耗。这样的阻塞是没有必要的，因为只有当 <code>instance</code> 没有被创建时，加锁才有意义，一旦 <code>instance</code> 被创建，锁自然就成了负担。</p>
-<h3 id="GCD单例"><a href="#GCD单例" class="headerlink" title="GCD单例"></a>GCD单例</h3><p>为了解决 <code>@synchronized</code> 的性能问题，GCD为我们提供了一套简单又粗暴的单例类实现方案，即 <code>dispatch_once</code>。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> Singleton_GCD *instance;</span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">instancetype</span>)sharedInterface &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">dispatch_once_t</span> onceToken;</span><br><span class="line">    <span class="built_in">dispatch_once</span>(&amp;onceToken, ^&#123;</span><br><span class="line">        instance = [[<span class="keyword">self</span> alloc] init];</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>原理是这样的：</strong></p>
-<ol>
-<li><code>static</code> 表示 <code>instance</code> 将作为静态变量存入内存当中。</li>
-<li><code>dispatch_once_t</code> 类型其实就是 <code>long</code> 类型（<code>typedef long dispatch_once_t;</code>）。</li>
-<li><code>onceToken</code> 是 <code>dispatch_once</code> 来判断内部代码是否执行过的标志位。</li>
-<li>当 <code>onceToken</code> 为 0 时，线程执行 block 中的代码。</li>
-<li>当 <code>onceToken</code> 为 -1 时，线程跳过 block 中的代码。</li>
-<li>当 <code>onceToken</code> 为其他任何可能的值时，线程被阻塞，等待 <code>onceToken</code> 的值发生变化。</li>
-<li>A线程首先调用单例接口，先改变 <code>onceToken</code> 的值为一个任意值，再执行 block 中的代码（此时若其他线程也想执行 block 中的代码，则会因为判定 <code>onceToken</code> 的值而阻塞在外部），最后执行完 block，将 <code>onceToken</code>的值置为 -1，其他线程直接跳过 block。</li>
-<li>这样的模式只会在首次实例时阻塞线程，一旦实例创建完毕（此时 <code>onceToken</code> 已变为 -1），就不会再阻塞线程，而是直接跳过 block。</li>
-</ol>
-<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>单例模式是一种非常好用且常见的设计模式，而在 iOS 开发中，使用 GCD 来创建单例类，是目前的最佳方案。</p>
-<p>单例的优点很明显，节约系统开支，提升程序运行的效率，且开发者可以凭借单例特有的唯一性来定位 bug。</p>
-<p>但仍需注意的是，正因为单例独有的一旦创建就只有一份（地址不会变）的特性，导致我们无法手动销毁这个单例，这块内存只能由系统去释放。这就意味着，单例一旦处于闲置状态，那么它就是一个单纯的资源消耗者。所以，一个程序不应该有太多的单例，否则将会占用大量的内存。</p>
+<p>下面就来看一下 MVC 中的各个部分是干什么的。</p>
+<h3 id="“M”"><a href="#“M”" class="headerlink" title="“M”"></a>“M”</h3><p>M = Model，即模型，负责定义系统所包含的数据，是系统各部分的组成零件。</p>
+<blockquote>
+<p>Model 包含了数据和操作数据的相关业务逻辑。</p>
+</blockquote>
+<h3 id="“V”"><a href="#“V”" class="headerlink" title="“V”"></a>“V”</h3><p>V = View，即视图，负责将数据（图形、文字等）展示到屏幕上。</p>
+<blockquote>
+<p>View 本身不包含任何业务，只负责页面展示和对 Controller 的反馈（delegate 和 action）。</p>
+</blockquote>
+<h3 id="“C”"><a href="#“C”" class="headerlink" title="“C”"></a>“C”</h3><p>C = Controller，即控制器，负责接收并响应用户的操作，根据情况来处理模型及更新视图。</p>
+<blockquote>
+<p>MVC 的核心，负责协调 Model 与 View，包含了大量的业务逻辑处理、网络请求及部分数据库操作，纵观整个架构，Controller 可以看做是在写胶水代码。正因如此，Controller 在稍复杂一些的业务场景下，会变得略显臃肿，如果业务日趋复杂，稍不注意，Controller 就会变得难以维护（过度耦合的代码必将导致 Massive ViewController）。</p>
+</blockquote>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>Model 层完全独立，其可移植性和可维护性很高。</li>
+<li>Controller 层可以完全控制 View 层，甚至可以利用 runtime 的机制动态替换或修改 View。</li>
+<li>整个 MVC 设计模式对外而言十分健壮。</li>
+</ul>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>Controller 的职责过于繁重，甚至可能会产生一个令人窒息的 Controller，其可维护性和可测试性都很差。</li>
+<li>在 iOS 开发中，MVC 对于小型模块来讲过于复杂，如果这部分内容严格遵循 MVC 模式来开发，会花费很多时间和精力，增加了整体结构的复杂度，而这些都是没有必要的。</li>
+<li>View 和 Controller 的联系过于紧密，一旦分开，二者能做的东西实在太少，所以，“V”和“C”从模块的角度上来讲，是很难独立重用的。</li>
+</ul>
+<h4 id="改进方向"><a href="#改进方向" class="headerlink" title="改进方向"></a>改进方向</h4><ul>
+<li>给 Controller 减负。</li>
+<li>减弱 View 与 Controller 的联系。</li>
+</ul>
+<h4 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h4><p>MVC 虽然有些常被诟病的缺点，但其仍然是一个相对良好的设计模式。迄今为止，仍然有许多优秀的项目使用或参考了 MVC 设计模式，这就说明，MVC 仍然具有非常可观的价值。对 GUI 编程而言，MVC 是一位导师，开发者能从它身上学到很多有价值的东西，并在开发之中，取其精华，弃其糟粕，让自己的程序更加稳定和优雅。</p>
 
       
     </div>
@@ -505,8 +499,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/29/2018-10-28-Design-Pattern-Factory/" rel="next" title="工厂设计模式（Objective-C）【Factory Design Pattern】">
-                <i class="fa fa-chevron-left"></i> 工厂设计模式（Objective-C）【Factory Design Pattern】
+              <a href="/2018/11/11/图说-Effective-Objective-C-2-0/" rel="next" title="图说 -《Effective Objective-C 2.0》">
+                <i class="fa fa-chevron-left"></i> 图说 -《Effective Objective-C 2.0》
               </a>
             
           </div>
@@ -514,10 +508,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/11/图说-Effective-Objective-C-2-0/" rel="prev" title="图说 -《Effective Objective-C 2.0》">
-                图说 -《Effective Objective-C 2.0》 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -678,7 +668,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单线程单例"><span class="nav-number">2.</span> <span class="nav-text">单线程单例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步锁单例"><span class="nav-number">3.</span> <span class="nav-text">同步锁单例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GCD单例"><span class="nav-number">4.</span> <span class="nav-text">GCD单例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结语"><span class="nav-number">5.</span> <span class="nav-text">结语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#MVC-是什么？"><span class="nav-number">1.</span> <span class="nav-text">MVC 是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#“M”"><span class="nav-number">2.</span> <span class="nav-text">“M”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#“V”"><span class="nav-number">3.</span> <span class="nav-text">“V”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#“C”"><span class="nav-number">4.</span> <span class="nav-text">“C”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#优点"><span class="nav-number">5.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点"><span class="nav-number">5.2.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#改进方向"><span class="nav-number">5.3.</span> <span class="nav-text">改进方向</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结语"><span class="nav-number">5.4.</span> <span class="nav-text">结语</span></a></li></ol></li></ol></div>
             
 
           </div>
